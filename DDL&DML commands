@@ -34,6 +34,7 @@ created_at datetime
 create table order_products(
 order_id int,
 product_id int,
+primary key(order_id,product_id),
 foreign key (order_id) references orders(id),
 foreign key (product_id) references products(id),
 quantity int default 0
@@ -47,12 +48,12 @@ values (1,'Daad Alsaif','daad@gmail.com','F','1997-07-28','22-04-12 13:09:10',1)
 insert into orders 
 values(442,1,'start','22-04-17 13:21:34');
 insert into products
-values(78,'coffee',100,'valid','22-07-17 13:12:30');
+values(78,'coffee',100,'valid','22-07-17 13:12:30'),(45,'QV',95,'valid','22-07-17 14:12:40');
 insert into order_products 
 values(442,78,10);
 
 -- DML Update & Delete
  update countries
  set name='France', continent_name ='Europe' where code =1;
- delete from products where id =78;
+ delete from products where id =45;
  
