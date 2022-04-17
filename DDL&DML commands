@@ -1,5 +1,6 @@
-use Store;
--- DDL
+-- DDL Create
+create database Store;  
+
 create table countries(
 code int primary key,
 name varchar(20) not null,
@@ -38,7 +39,7 @@ foreign key (product_id) references products(id),
 quantity int default 0
 
 );
--- DML
+-- DML Insert
 insert into countries
 values(1,'Riyadh','Asia');
 insert into users 
@@ -50,7 +51,7 @@ values(78,'coffee',100,'valid','22-07-17 13:12:30');
 insert into order_products 
 values(442,78,10);
 
--- DML
+-- DML Update & Delete
  update countries
  set name='France', continent_name ='Europe' where code =1;
  delete from products where id =78;
