@@ -1,0 +1,57 @@
+use Store;
+-- DDL
+create table countries(
+code int primary key,
+name varchar(20) not null,
+continent_name varchar(20) unique
+);
+create table users(
+id int primary key,
+full_name varchar(20),
+email varchar(20)unique,
+gender char(1) check (gender='M'or gender='F'),
+date_of_birth varchar(15) ,
+created_at datetime,
+country_code int ,
+foreign key (country_code) references countries(code)
+);
+create table orders(
+id int primary key,
+user_id int ,
+foreign key (user_id) references users(id),
+status varchar(6)check (status='start' or status='finish'),
+created_at datetime
+);
+create table products(
+id int primary key,
+name varchar(10) not null,
+price int default 0,
+status varchar(10) check(status='valid' or status='expired'),
+created_at datetime
+
+);
+create table order_products(
+order_id int,
+product_id int,
+foreign key (order_id) references orders(id),
+foreign key (product_id) references products(id),
+quantity int default 0
+
+);
+-- DML
+insert into countries
+values(1,'Riyadh','Asia');
+insert into users 
+values (1,'Daad Alsaif','daad@gmail.com','F','1997-07-28','22-04-12 13:09:10',1);
+insert into orders 
+values(442,1,'start','22-04-17 13:21:34');
+insert into products
+values(78,'coffee',100,'valid','22-07-17 13:12:30');
+insert into order_products 
+values(442,78,10);
+
+-- DML
+ update countries
+ set name='France', continent_name ='Europe' where code =1;
+ delete from products where id =78;
+ 
